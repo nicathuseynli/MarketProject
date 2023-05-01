@@ -31,10 +31,7 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<List<Category>> GetAllAsync()
     {
-       return await _marketDbContext.Categories.
-            Include(p =>p.Warehouses).ThenInclude(p=>p.FoodDrinkWarehouse).
-            Include(p=>p.Warehouses).ThenInclude(p=>p.ElectronicWarehouse).
-            Include(p=>p.Warehouses).ThenInclude(p=>p.CleaningEquipmentWarehouse).ToListAsync();
+       return await _marketDbContext.Categories.ToListAsync();
     }
 
     public async Task<Category> GetByIdAsync(int id)

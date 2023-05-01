@@ -11,7 +11,6 @@ public class AppUserService : IAppUserService
     public AppUserService(UserManager<AppUser> userManager)
     {
         _userManager = userManager;
-
     }
 
     public async Task<bool> ChangePasswordAsync(ChangeAppUserPasswordDto changePasswordDto)
@@ -30,16 +29,12 @@ public class AppUserService : IAppUserService
     public async Task<bool> ForgetPasswordAsync(ForgetAppUserPasswordDto forgetPasswordDto)
     {
         var user = await _userManager.FindByEmailAsync(forgetPasswordDto.Email);
-        if (user == null)
-        {
-            return false;
-        }
+        if (user == null)return false;
+
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
         var result = await _userManager.ResetPasswordAsync(user, token, forgetPasswordDto.Password);
-        if (!result.Succeeded)
-        {
-            return false;
-        }
+        if (!result.Succeeded)return false;
         return true;
     }
 
@@ -64,6 +59,12 @@ public class AppUserService : IAppUserService
             Fullname = registerDto.Name + " " + registerDto.Surname,
             EmailConfirmed = true
         };
+        //EMPLOYEE VE USER PASSWORD EYNIDIRSE MENI GET SEHIFESINE ATSIN
+        //FERGLIDIRSE EGER MENI CREATE ELETDIRSIN
+        //if (user.PasswordHash==Employee.password)
+        //{
+
+        //}
         await _userManager.CreateAsync(user, registerDto.Password);
         return true;
     }

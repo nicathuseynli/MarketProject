@@ -25,7 +25,7 @@ public class MarketRepository : IMarketRepository
         if (result == null)
             return null;
         _marketDbContext.Employees.Remove(result);
-        _marketDbContext.SaveChangesAsync();
+        await _marketDbContext.SaveChangesAsync();
         return result;
     }
 

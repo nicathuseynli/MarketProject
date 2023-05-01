@@ -12,10 +12,13 @@ public class MarketDbContext : IdentityDbContext<AppUser>
     public DbSet<Market> Markets { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
+    public DbSet<TypeWarehouse> TypeWarehouses { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<PartnerCompany> PartnerCompanies { get; set; }
-    public DbSet<ElectronicWarehouse> ElectronicWarehouses { get; set; }
-    public DbSet<FoodDrinkWarehouse> FoodDrinkWarehouses { get; set; }
-    public DbSet<CleaningEquipmentWarehouse> CleaningEquipmentWarehouses { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }

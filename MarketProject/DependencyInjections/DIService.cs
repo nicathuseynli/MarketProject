@@ -10,6 +10,7 @@ public static class DIService
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IPartnerCompanyService, PartnerCompanyService>();
         services.AddScoped<IMarketService, MarketService>();
+        services.AddScoped<IAppUserService, AppUserService>();
         return services;
     }
 }

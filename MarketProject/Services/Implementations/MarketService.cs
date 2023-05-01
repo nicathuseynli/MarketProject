@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using MarketProject.Datas.Entities;
 using MarketProject.Dtos.EmployeeDtos;
+using MarketProject.Repositories.Abstarctions;
 using MarketProject.Services.Interfaces;
 
 namespace MarketProject.Services.Implementations;
 public class MarketService : IMarketService
 {
-    private readonly IMarketService _marketServiceRepository;
+    private readonly IMarketRepository _marketServiceRepository;
     private readonly IMapper _mapper;
 
-    public MarketService(IMarketService marketServiceRepository, IMapper mapper)
+    public MarketService(IMarketRepository marketServiceRepository, IMapper mapper)
     {
         _marketServiceRepository = marketServiceRepository;
         _mapper = mapper;
@@ -17,8 +18,8 @@ public class MarketService : IMarketService
 
     public async Task CreateAsync(CreateEmployeeDto createEmployeeDto)
     {
-        var creaateEmployeeDto = _mapper.Map<CreateEmployeeDto>(createEmployeeDto);
-        await _marketServiceRepository.CreateAsync(creaateEmployeeDto);
+        var createEmployee = _mapper.Map<Employee>(createEmployeeDto);
+        await _marketServiceRepository.CreateAsync(createEmployee);
     }
 
     public async Task<bool> DeleteAsync(int id)

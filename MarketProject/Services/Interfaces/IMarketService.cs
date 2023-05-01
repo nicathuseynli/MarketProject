@@ -2,6 +2,7 @@
 using MarketProject.Dtos.EmployeeDtos;
 
 namespace MarketProject.Services.Interfaces;
+
 public interface IMarketService
 {
     Task CreateAsync(CreateEmployeeDto createEmployeeDto);
